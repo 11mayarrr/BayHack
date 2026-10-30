@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لوحة أوقات التبرع – إحسان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@500;700;800&display=swap">
+<style>
+/* Layout: emerald hero band with a geometric star motif, sticky section nav, then card grids per question. */
+:root {
+  --bg: #F4F7F5;
+  --surface: #FFFFFF;
+  --surface-2: #EEF3F0;
+  --ink: #12221E;
+  --muted: #5B6C67;
+  --line: #DCE5E1;
+  --grid: #E7EEEB;
+  --accent: #0F6B57;
+  --accent-ink: #FFFFFF;
+  --gold: #B9842A;
+  --soft: #E2EFEA;
+  --bar-muted: #C6D4CF;
+  --bad: #B0473B;
+  --good: #17734B;
+  --hero-1: #0B4F41;
+  --hero-2: #12735E;
+  --shadow: 0 1px 2px rgba(16, 40, 34, .05), 0 8px 24px -12px rgba(16, 40, 34, .18);
+  --font-display: "Noto Kufi Arabic", "IBM Plex Sans Arabic", Tahoma, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --r: 14px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1412; --surface: #121E1B; --surface-2: #172622; --ink: #E6EFEB; --muted: #94A7A1; --line: #23352F; --grid: #1B2B27;
+    --accent: #3DB394; --accent-ink: #062019; --gold: #E0B25A; --soft: #163029; --bar-muted: #34483F; --bad: #E27B6D; --good: #5BC993;
+    --hero-1: #082E26; --hero-2: #0D4A3D; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1412; --surface: #121E1B; --surface-2: #172622; --ink: #E6EFEB; --muted: #94A7A1; --line: #23352F; --grid: #1B2B27;
+  --accent: #3DB394; --accent-ink: #062019; --gold: #E0B25A; --soft: #163029; --bar-muted: #34483F; --bad: #E27B6D; --good: #5BC993;
+  --hero-1: #082E26; --hero-2: #0D4A3D; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, p { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Hero */
+.hero { color: #F2FBF7; background:
+  radial-gradient(1200px 400px at 85% -10%, rgba(255,255,255,.10), transparent 60%),
+  linear-gradient(135deg, var(--hero-1), var(--hero-2)); position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; opacity: .09; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Cpath d='M36 6 L44 28 L66 36 L44 44 L36 66 L28 44 L6 36 L28 28 Z'/%3E%3Crect x='21' y='21' width='30' height='30' transform='rotate(45 36 36)'/%3E%3Crect x='21' y='21' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 72px 72px; mask-image: linear-gradient(to left, #000 10%, transparent 75%); -webkit-mask-image: linear-gradient(to left, #000 10%, transparent 75%); }
+.hero .wrap { position: relative; padding-block: 40px 30px; display: grid; gap: 22px; }
+.hero-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; letter-spacing: .02em; opacity: .92; }
+.brand-mark { width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,.14); display: grid; place-items: center; }
+.theme-btn { font: inherit; font-size: 13px; color: inherit; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.theme-btn:hover { background: rgba(255,255,255,.2); }
+.theme-btn:focus-visible, .seg button:focus-visible, .nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 4.4vw, 46px); line-height: 1.35; text-wrap: balance; max-width: 22ch; }
+.lead { font-size: clamp(15px, 1.6vw, 18px); line-height: 2; max-width: 68ch; color: rgba(242,251,247,.9); }
+.lead b { color: #fff; font-weight: 700; background: rgba(255,255,255,.12); border-radius: 6px; padding: 0 6px; white-space: nowrap; }
+.meta-line { font-size: 13px; color: rgba(242,251,247,.72); }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 12px; margin-top: 6px; }
+.kpi { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 2px; backdrop-filter: blur(4px); }
+.kpi span { font-size: 12.5px; color: rgba(242,251,247,.75); }
+.kpi strong { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.4; font-variant-numeric: tabular-nums; }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+.nav a { flex: none; text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 999px; }
+.nav a:hover { color: var(--ink); background: var(--surface-2); }
+.nav a.on { color: var(--accent-ink); background: var(--accent); }
+
+main .wrap { display: grid; gap: 44px; padding-block: 32px 56px; }
+.sec { display: grid; gap: 16px; }
+.sec-head { display: grid; gap: 4px; }
+.eyebrow { font-size: 12.5px; font-weight: 600; color: var(--gold); letter-spacing: .04em; }
+.sec-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5; text-wrap: balance; }
+.sec-head p { color: var(--muted); max-width: 70ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; box-shadow: var(--shadow); }
+.wide { grid-column: 1 / -1; }
+.card h3 { font-size: 16px; font-weight: 600; line-height: 1.6; }
+.note { font-size: 13px; color: var(--muted); line-height: 1.8; }
+.card-head { display: flex; justify-content: space-between; align-items: start; gap: 12px; flex-wrap: wrap; }
+
+/* Ranked periods */
+.ranks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 12px; }
+.rank { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 6px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.rank.first { background: linear-gradient(160deg, var(--soft), var(--surface) 70%); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.rank-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.rank-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; background: var(--accent); color: var(--accent-ink); }
+.pill { font-size: 11.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+.rank-name { font-weight: 600; line-height: 1.6; min-height: 3.2em; }
+.rank-val { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--accent); line-height: 1.3; font-variant-numeric: tabular-nums; }
+.rank-ci { font-size: 12.5px; color: var(--muted); }
+.ci-track { height: 6px; border-radius: 3px; background: var(--grid); position: relative; }
+.ci-track i { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.ci-track b { position: absolute; top: -3px; width: 4px; height: 12px; border-radius: 2px; background: var(--accent); }
+
+/* Charts */
+.chart { position: relative; min-height: 220px; }
+.chart svg { display: block; overflow: visible; }
+.tick { font-size: 11.5px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.lab { font-size: 12.5px; fill: var(--ink); }
+.val { font-size: 12px; fill: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.ax { stroke: var(--line); stroke-width: 1; }
+.ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+.hit { fill: transparent; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12.5px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw.line { height: 3px; width: 18px; border-radius: 2px; }
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--muted); padding: 4px 12px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.scale { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.scale i { width: 120px; height: 8px; border-radius: 4px; background: linear-gradient(to left, color-mix(in srgb, var(--accent) 8%, var(--surface)), var(--accent)); }
+
+.clock-wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+
+/* Tables */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th { text-align: start; font-size: 12.5px; font-weight: 500; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: var(--surface-2); }
+.cellbar { display: flex; align-items: center; gap: 10px; }
+.cellbar i { display: block; height: 8px; border-radius: 4px; background: var(--accent); min-width: 3px; }
+.slot-n { width: 24px; height: 24px; display: inline-grid; place-items: center; border-radius: 7px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: 12.5px; }
+@media (max-width: 560px) { .hide-narrow { display: none; } }
+
+.notes { margin: 0; padding-inline-start: 1.2rem; display: grid; gap: 6px; color: var(--muted); font-size: 13.5px; line-height: 1.9; max-width: 85ch; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; }
+footer .wrap { padding-block: 20px; }
+
+#tip { position: fixed; z-index: 50; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 30px -10px rgba(0,0,0,.35); padding: 8px 12px; font-size: 12.5px; display: grid; gap: 2px; min-width: 120px; font-variant-numeric: tabular-nums; }
+#tip .h { color: var(--muted); font-size: 12px; }
+#tip .v b { font-weight: 700; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .grow { animation: grow .7s cubic-bezier(.2,.7,.2,1) both; transform-box: fill-box; transform-origin: bottom; }
+  @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .fade { animation: fade .6s ease-out both; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 6.4L21 11l-6.4 2.6L12 20l-2.6-6.4L3 11l6.4-2.6z"/></svg></span>لوحة تحليلات التبرع · لفريق إحسان</span>
+      <button class="theme-btn" id="themeBtn" type="button">الوضع الداكن</button>
+    </div>
+    <h1>متى يتبرّع الناس أكثر؟</h1>
+    <p class="lead" id="lead"></p>
+    <p class="meta-line" id="metaLine"></p>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="أقسام اللوحة">
+  <div class="wrap">
+    <a href="#best">أفضل الفترات</a>
+    <a href="#hours">الساعات</a>
+    <a href="#days">الأسبوع والشهر</a>
+    <a href="#seasons">المواسم</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#method">المنهجية</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <section class="sec" id="best">
+      <div class="sec-head">
+        <span class="eyebrow">للتخطيط</span>
+        <h2>أفضل الفترات لتجربة الحملات</h2>
+        <p>الفترات التي ارتفع فيها عدد المتبرعين اليومي بوضوح، بعد ضبط نمو المنصة ويوم الأسبوع والمواسم وأيام الرواتب. مرتبة من الأعلى.</p>
+      </div>
+      <div class="ranks" id="ranks"></div>
+      <div class="card">
+        <div class="card-head">
+          <h3>أثر كل عامل على عدد المتبرعين في اليوم</h3>
+          <div class="legend">
+            <span><i class="sw" style="background:var(--accent)"></i>ارتفاع واضح</span>
+            <span><i class="sw" style="background:var(--bad)"></i>انخفاض واضح</span>
+            <span><i class="sw" style="background:var(--bar-muted)"></i>لا دليل واضح</span>
+          </div>
+        </div>
+        <p class="note">النقطة هي التغيّر المقدّر، والخط هو مدى الثقة ٩٥٪. الخط المتقطع يعني «لا تغيير».</p>
+        <div class="chart" id="forest" style="min-height:440px"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="hours">
+      <div class="sec-head">
+        <span class="eyebrow">للإشعارات والرسائل</span>
+        <h2>الساعات الأكثر تبرعاً</h2>
+        <p>أرسل التذكير قبل ساعة الذروة بقليل. الساعات بنظام ٢٤ ساعة كما سُجلت في النظام.</p>
+      </div>
+      <div class="grid">
+        <div class="card wide">
+          <div class="card-head">
+            <h3>خريطة الأسبوع: اليوم × الساعة</h3>
+            <div class="seg" role="group" aria-label="المقياس">
+              <button type="button" id="m-donations" data-m="donations" aria-pressed="true">التبرعات</button>
+              <button type="button" id="m-donors" data-m="donors" aria-pressed="false">المتبرعون</button>
+              <button type="button" id="m-amount" data-m="amount" aria-pressed="false">المبلغ</button>
+            </div>
+          </div>
+          <div class="scale"><span>أقل</span><i></i><span>أكثر</span><span>· المربع المحاط بإطار هو الأعلى</span></div>
+          <div class="chart" id="heat" style="min-height:250px"></div>
+        </div>
+        <div class="card">
+          <h3>ساعة اليوم</h3>
+          <p class="note">طول كل قطاع = عدد التبرعات في تلك الساعة على كامل الفترة. الذهبي هو الذروة.</p>
+          <div class="chart" id="clock" style="min-height:320px"></div>
+        </div>
+        <div class="card">
+          <h3>رمضان مقابل باقي السنة</h3>
+          <p class="note">نسبة تبرعات كل ساعة من مجموع اليوم. في رمضان ذروتان: السحور وقبيل الإفطار.</p>
+          <div class="legend"><span><i class="sw line" style="background:var(--gold)"></i>رمضان</span><span><i class="sw line" style="background:var(--accent)"></i>باقي السنة</span></div>
+          <div class="chart" id="hourly"></div>
+        </div>
+        <div class="card wide">
+          <h3>أكثر ٥ أوقات تبرعاً في الأسبوع</h3>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>#</th><th>اليوم</th><th>الساعة</th><th>التبرعات</th><th class="hide-narrow">المتبرعون</th><th class="hide-narrow">المبلغ (ريال)</th></tr></thead>
+            <tbody id="slots"></tbody>
+          </table></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="days">
+      <div class="sec-head">
+        <span class="eyebrow">للجدولة الأسبوعية والشهرية</span>
+        <h2>الأسبوع والشهر</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>متوسط المتبرعين حسب يوم الأسبوع</h3>
+          <p class="note">الجمعة أعلى من بقية أيام الأسبوع بشكل ثابت، والسبت الأقل.</p>
+          <div class="chart" id="weekday"></div>
+        </div>
+        <div class="card">
+          <h3>متوسط المتبرعين حسب يوم الشهر الميلادي</h3>
+          <p class="note">خارج رمضان وذي الحجة. الأيام الملوّنة (<span id="payRange"></span>) حول صرف التقاعد ورواتب الدولة.</p>
+          <div class="chart" id="dom"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="seasons">
+      <div class="sec-head">
+        <span class="eyebrow">للتخطيط السنوي</span>
+        <h2>المواسم الهجرية</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>متوسط المتبرعين في اليوم حسب الشهر الهجري</h3>
+          <p class="note">رمضان وذو الحجة ملوّنان لأنهما موسما الارتفاع الواضح.</p>
+          <div class="chart" id="hijri"></div>
+        </div>
+        <div class="card">
+          <h3>كل يوم من رمضان</h3>
+          <p class="note">العشر الأواخر ملوّنة بالذهبي. يرتفع التبرع كلما اقتربت ليالي العشر.</p>
+          <div class="chart" id="ramadan"></div>
+        </div>
+        <div class="card wide">
+          <div class="card-head">
+            <h3>المتبرعون يومياً على طول الفترة</h3>
+            <div class="legend"><span><i class="sw line" style="background:var(--accent)"></i>متبرعون في اليوم</span><span><i class="sw" style="background:var(--gold);opacity:.3"></i>شهر رمضان</span></div>
+          </div>
+          <div class="chart" id="trend" style="min-height:280px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="projects">
+      <div class="sec-head">
+        <span class="eyebrow">المحتوى</span>
+        <h2>أكثر المشاريع تبرعاً</h2>
+        <p>أعلى ١٠ مشاريع بعدد التبرعات اليدوية.</p>
+      </div>
+      <div class="card">
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>المشروع</th><th>التبرعات</th><th class="hide-narrow">المتبرعون</th><th>المبلغ (ريال)</th></tr></thead>
+          <tbody id="proj"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section class="sec" id="method">
+      <div class="sec-head">
+        <span class="eyebrow">للشفافية</span>
+        <h2>كيف حُسبت الأرقام</h2>
+      </div>
+      <ul class="notes" id="notes"></ul>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap">مصدر البيانات: ehsan_rows_2021-04_2023-06.csv ونتائج دفتر كولاب. أُعدّت اللوحة لاستخدام فريق إحسان الداخلي.</div></footer>
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+</script>
+<script>
+(function () {
+  // ---------- helpers ----------
+  const f0 = d3.format(','), f1 = d3.format(',.1f'), pct = d3.format('.1%'), pct0 = d3.format('.0%');
+  const signed = (v) => (v > 0 ? '+' : '') + d3.format(',.1f')(v) + '%';
+  const signed0 = (v) => (v > 0 ? '+' : '') + d3.format(',.0f')(v) + '%';
+  const hh = (h) => String(h).padStart(2, '0') + ':00';
+  const monthFmt = new Intl.DateTimeFormat('ar-u-nu-latn', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const monFmt = new Intl.DateTimeFormat('ar-u-nu-latn', { month: 'short', timeZone: 'UTC' });
+  const dayFmt = new Intl.DateTimeFormat('ar-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const PAY_DAYS = [25, 28];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let firstDraw = true;
+
+  // SVG is RTL: anchor "start" = text's right edge at x.
+  const RIGHT = 'start';
+
+  const tipEl = document.getElementById('tip');
+  function showTip(ev, head, lines) {
+    tipEl.replaceChildren(el('div', 'h', head), ...lines.map((l) => el('div', 'v', l)));
+    tipEl.hidden = false;
+    const w = tipEl.offsetWidth, h = tipEl.offsetHeight;
+    let x = ev.clientX - w - 14; if (x < 8) x = Math.min(ev.clientX + 14, innerWidth - w - 8);
+    let y = ev.clientY + 14; if (y + h > innerHeight - 8) y = ev.clientY - h - 14;
+    tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+  }
+  const hideTip = () => { tipEl.hidden = true; };
+
+  function svgIn(box, W, H) {
+    box.replaceChildren();
+    return d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('direction', 'rtl');
+  }
+  function measure(svg, texts, cls) {
+    const g = svg.append('g').attr('class', cls); let w = 0;
+    texts.forEach((t) => { w = Math.max(w, g.append('text').text(t).node().getComputedTextLength()); });
+    g.remove(); return w;
+  }
+
+  function bars(box, rows, o) {
+    const W = Math.max(280, box.clientWidth), H = o.height || 230, B = 30;
+    const svg = svgIn(box, W, H);
+    const y = d3.scaleLinear([0, d3.max(rows, o.val) || 1], [H - B, 14]).nice();
+    const ticks = y.ticks(4);
+    const mr = measure(svg, ticks.map(f0), 'tick') + 12, ml = 4;
+    const x = d3.scaleBand(rows.map(o.cat), [W - mr, ml]).paddingInner(0.28).paddingOuter(0.1);
+    const bw = Math.min(34, x.bandwidth()), off = (x.bandwidth() - bw) / 2;
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('class', (d) => (d === 0 ? 'ax' : 'gl'))
+      .attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y);
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'tick')
+      .attr('x', W - 2).attr('y', y).attr('dy', '0.32em').attr('text-anchor', RIGHT).text(f0);
+    const col = o.color || (() => 'var(--accent)');
+    svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('class', firstDraw && !reduce ? 'grow' : null)
+      .style('animation-delay', (r, i) => i * 18 + 'ms')
+      .attr('x', (r) => x(o.cat(r)) + off).attr('width', bw)
+      .attr('y', (r) => y(o.val(r))).attr('height', (r) => y(0) - y(o.val(r)))
+      .attr('rx', Math.min(5, bw / 2)).style('fill', col);
+    const xf = o.xfmt || String;
+    const lw = measure(svg, rows.map((r) => xf(o.cat(r))), 'tick') + 8;
+    const every = Math.max(1, Math.ceil(lw / x.step()));
+    svg.append('g').selectAll('text').data(rows.filter((r, i) => i % every === 0)).join('text').attr('class', 'tick')
+      .attr('x', (r) => x(o.cat(r)) + x.bandwidth() / 2).attr('y', H - 9).attr('text-anchor', 'middle').text((r) => xf(o.cat(r)));
+    if (o.labelTop) {
+      const top = rows.reduce((a, b) => (o.val(b) > o.val(a) ? b : a));
+      svg.append('text').attr('class', 'val').attr('x', x(o.cat(top)) + x.bandwidth() / 2).attr('y', y(o.val(top)) - 6)
+        .attr('text-anchor', 'middle').text(f1(o.val(top)));
+    }
+    svg.append('g').selectAll('rect').data(rows).join('rect').attr('class', 'hit')
+      .attr('x', (r) => x(o.cat(r)) - (x.step() - x.bandwidth()) / 2).attr('width', x.step()).attr('y', 0).attr('height', H - B)
+      .on('pointermove', (ev, r) => { const t = o.tip(r); showTip(ev, t[0], t.slice(1)); }).on('pointerleave', hideTip);
+  }
+
+  // ---------- data ----------
+  const S = DATA.summary[0];
+  const wh = DATA.weekday_hour.map((r) => ({ wo: +r.weekday_order, wd: r.weekday, h: +r.hour, donations: +r.donations, donors: +r.donors, amount: +r.amount }));
+  const hourly = DATA.hourly.map((r) => ({ h: +r.hour, rs: +r.ramadan_share, os: +r.other_share, rd: +r.ramadan_per_day, od: +r.other_per_day, n: +r.all_donations }));
+  const weekday = DATA.weekday.map((r) => ({ o: +r.weekday_order, wd: r.weekday, v: +r.avg_donors, n: +r.avg_donations, days: +r.days })).sort((a, b) => a.o - b.o);
+  const model = DATA.model_results.map((r) => ({ ...r, c: +r.change_pct, lo: +r.ci_low, hi: +r.ci_high, rank: r.rank === '' || r.rank == null ? null : +r.rank }));
+  const totalHourly = d3.sum(hourly, (r) => r.n);
+  const peakHour = hourly.reduce((a, b) => (b.n > a.n ? b : a));
+  const topDay = weekday.reduce((a, b) => (b.v > a.v ? b : a));
+  const last10 = model.find((r) => r.key === 'ramadan_last10');
+
+  // ---------- header ----------
+  const lead = document.getElementById('lead');
+  const B = (t) => el('b', 'num', t);
+  lead.append('أكثر ساعة تأتي فيها التبرعات هي ', B(hh(peakHour.h)), ' (', B(pct(peakHour.n / totalHourly)), ' من كل التبرعات)، و',
+    B(topDay.wd), ' أعلى أيام الأسبوع بمتوسط ', B(f1(topDay.v)), ' متبرعاً في اليوم. وفي العشر الأواخر من رمضان يرتفع عدد المتبرعين اليومي بنحو ',
+    B(signed0(last10.c)), ' مقارنة بالأيام المماثلة.');
+  document.getElementById('metaLine').textContent =
+    `من ${monthFmt.format(new Date(S.start))} إلى ${monthFmt.format(new Date(S.end))} · تبرعات يدوية فقط (بدون الاستقطاعات الآلية) · الأوقات كما سُجّلت في النظام`;
+  const kpis = [['عدد التبرعات', f0(+S.donations)], ['عدد المتبرعين', f0(+S.donors)], ['إجمالي المبالغ (ريال)', f0(+S.amount)],
+    ['متوسط المتبرعين في اليوم', f1(+S.avg_donors_per_day)], ['أيام فيها تبرعات', f0(+S.days_with_data)]];
+  document.getElementById('kpis').replaceChildren(...kpis.map(([l, v]) => { const k = el('div', 'kpi'); k.append(el('span', null, l), el('strong', null, v)); return k; }));
+  document.getElementById('payRange').textContent = PAY_DAYS[0] + '–' + PAY_DAYS[1];
+
+  // ---------- ranked periods ----------
+  const ranked = model.filter((r) => r.rank != null).sort((a, b) => a.rank - b.rank);
+  const ciMax = d3.max(ranked, (r) => r.hi);
+  document.getElementById('ranks').replaceChildren(...ranked.map((r, i) => {
+    const c = el('div', 'rank' + (i === 0 ? ' first' : ''));
+    const top = el('div', 'rank-top'); top.append(el('span', 'rank-n', String(r.rank)), el('span', 'pill', r.type));
+    const track = el('div', 'ci-track'); const band = el('i'); const pt = el('b');
+    band.style.right = (Math.max(0, r.lo) / ciMax) * 100 + '%'; band.style.width = ((r.hi - Math.max(0, r.lo)) / ciMax) * 100 + '%';
+    pt.style.right = `calc(${(r.c / ciMax) * 100}% - 2px)`;
+    track.append(band, pt);
+    c.append(top, el('div', 'rank-name', r.factor), el('div', 'rank-val', signed0(r.c)), track,
+      el('div', 'rank-ci', 'على الأقل ' + signed0(r.lo) + ' وقد يصل إلى ' + signed0(r.hi)));
+    return c;
+  }));
+
+  // ---------- tables ----------
+  const td = (t, cls) => el('td', cls, t);
+  const slots = [...wh].sort((a, b) => b.donations - a.donations).slice(0, 5);
+  document.getElementById('slots').replaceChildren(...slots.map((r, i) => {
+    const tr = el('tr'); const n = td(''); n.append(el('span', 'slot-n', String(i + 1)));
+    tr.append(n, td(r.wd), td(hh(r.h) + '–' + hh((r.h + 1) % 24), 'num'), td(f0(r.donations), 'num'), td(f0(r.donors), 'num hide-narrow'), td(f0(r.amount), 'num hide-narrow'));
+    return tr;
+  }));
+  const proj = DATA.top_projects.map((r) => ({ p: r.project, n: +r.donations, u: +r.donors, a: +r.amount }));
+  const pmax = d3.max(proj, (r) => r.n);
+  document.getElementById('proj').replaceChildren(...proj.map((r) => {
+    const tr = el('tr'); const c = td(''); const w = el('div', 'cellbar'); const bar = el('i');
+    bar.style.width = Math.max(3, (r.n / pmax) * 140) + 'px'; w.append(bar, el('span', 'num', f0(r.n))); c.append(w);
+    tr.append(td(r.p), c, td(f0(r.u), 'num hide-narrow'), td(f0(r.a), 'num'));
+    return tr;
+  }));
+  const notes = [
+    `استُبعدت ${f0(+S.excluded_recurring)} عملية استقطاع آلي (التبرع الدوري)، لأن وقتها يحدده النظام لا المتبرع.`,
+    `دُمجت ${f0(+S.merged_duplicates)} نسخة مكررة من نفس العملية، فبقيت ${f0(+S.donations)} عملية من ${f0(+S.donors)} متبرع.`,
+    'نتائج «أفضل الفترات» من نموذج بواسون في دفتر كولاب: يقارن كل يوم بأيام مماثلة بعد ضبط يوم الأسبوع ونمو المنصة والمواسم وأيام الرواتب، مع أخطاء معيارية HAC. «ارتفاع واضح» يعني أن مدى الثقة ٩٥٪ كله فوق الصفر وأن التحقق الثاني يوافقه.',
+    'هذه علاقة في البيانات وليست دليلاً على السبب. هي ترشّح فترات لتجربة الحملات فيها، ولا تثبت أفضل وقت للإعلان لعدم وجود بيانات حملات.',
+    'الأوقات كما سُجّلت في النظام (يُفترض أنها بتوقيت السعودية؛ نمط السحور وقبيل الإفطار في رمضان يدعم ذلك).',
+  ];
+  document.getElementById('notes').replaceChildren(...notes.map((n) => el('li', null, n)));
+
+  // ---------- charts ----------
+  let heatMetric = 'donations';
+  const metricName = { donations: 'تبرع', donors: 'متبرع', amount: 'ريال' };
+
+  const charts = {
+    forest(box) {
+      const rows = [...model].sort((a, b) => b.c - a.c);
+      const W = Math.max(300, box.clientWidth), rowH = 27, top = 6, Bm = 28, H = top + rows.length * rowH + Bm;
+      const svg = svgIn(box, W, H);
+      const lw = Math.min(W * 0.45, measure(svg, rows.map((r) => r.factor), 'lab') + 14);
+      const vw = measure(svg, rows.map((r) => signed0(r.c)), 'val') + 12;
+      const x = d3.scaleLinear([Math.min(0, d3.min(rows, (r) => r.lo)), d3.max(rows, (r) => r.hi)], [W - lw - 8, vw + 4]).nice();
+      const color = (r) => (r.conclusion === 'ارتفاع واضح' ? 'var(--accent)' : r.conclusion === 'انخفاض واضح' ? 'var(--bad)' : 'var(--bar-muted)');
+      const yb = H - Bm, tk = x.ticks(W < 500 ? 3 : 6);
+      svg.append('g').selectAll('line').data(tk).join('line').attr('class', 'gl').attr('x1', x).attr('x2', x).attr('y1', top).attr('y2', yb);
+      svg.append('g').selectAll('text').data(tk).join('text').attr('class', 'tick').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').text((v) => f0(v) + '%');
+      svg.append('line').attr('class', 'ref').attr('x1', x(0)).attr('x2', x(0)).attr('y1', top).attr('y2', yb);
+      const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${top + i * rowH + rowH / 2})`);
+      g.append('rect').attr('x', 0).attr('width', W).attr('y', -rowH / 2).attr('height', rowH).style('fill', (r, i) => (i % 2 ? 'transparent' : 'var(--surface-2)')).attr('rx', 6).style('opacity', .6);
+      g.append('text').attr('class', 'lab').attr('x', W - 6).attr('dy', '0.32em').attr('text-anchor', RIGHT).text((r) => r.factor);
+      g.append('line').attr('x1', (r) => x(r.lo)).attr('x2', (r) => x(r.hi)).style('stroke', color).attr('stroke-width', 3).attr('stroke-linecap', 'round').style('opacity', .55);
+      g.append('circle').attr('cx', (r) => x(r.c)).attr('r', 5.5).style('fill', color).style('stroke', 'var(--surface)').attr('stroke-width', 2);
+      g.append('text').attr('class', 'val').attr('x', (r) => x(r.hi) - 8).attr('dy', '0.32em').attr('text-anchor', RIGHT).text((r) => signed0(r.c));
+      g.append('rect').attr('class', 'hit').attr('x', 0).attr('width', W).attr('y', -rowH / 2).attr('height', rowH)
+        .on('pointermove', (ev, r) => showTip(ev, r.factor, ['التغيّر المقدّر: ' + signed(r.c), 'المدى ٩٥٪: ' + signed(r.lo) + ' إلى ' + signed(r.hi), r.conclusion]))
+        .on('pointerleave', hideTip);
+    },
+
+    heat(box) {
+      const days = Array.from(new Map(wh.map((r) => [r.wo, r.wd])).entries()).sort((a, b) => a[0] - b[0]).map((e) => e[1]);
+      const W = Math.max(300, box.clientWidth);
+      const svg = svgIn(box, W, 100);
+      const lw = measure(svg, days, 'lab') + 12;
+      const cw = (W - lw - 2) / 24, ch = Math.max(22, Math.min(34, cw));
+      const H = days.length * ch + 28;
+      svg.attr('viewBox', `0 0 ${W} ${H}`);
+      const cx = (h) => W - lw - (h + 1) * cw, cy = (wo) => (wo - 1) * ch;
+      const v = (r) => r[heatMetric];
+      const max = d3.max(wh, v) || 1;
+      const best = wh.reduce((a, b) => (v(b) > v(a) ? b : a));
+      svg.append('g').selectAll('rect').data(wh).join('rect')
+        .attr('class', firstDraw && !reduce ? 'fade' : null).style('animation-delay', (r) => r.h * 15 + 'ms')
+        .attr('x', (r) => cx(r.h) + 1.5).attr('y', (r) => cy(r.wo) + 1.5).attr('width', Math.max(1, cw - 3)).attr('height', ch - 3).attr('rx', 4)
+        .style('fill', 'var(--accent)').style('fill-opacity', (r) => 0.06 + 0.94 * Math.pow(v(r) / max, 0.85))
+        .style('stroke', (r) => (r === best ? 'var(--gold)' : 'none')).attr('stroke-width', 2.5)
+        .on('pointermove', (ev, r) => showTip(ev, r.wd + ' · ' + hh(r.h) + '–' + hh((r.h + 1) % 24), [f0(r.donations) + ' تبرع', f0(r.donors) + ' متبرع', f0(r.amount) + ' ريال']))
+        .on('pointerleave', hideTip);
+      svg.append('g').selectAll('text').data(days).join('text').attr('class', 'lab')
+        .attr('x', W - 2).attr('y', (d, i) => i * ch + ch / 2).attr('dy', '0.32em').attr('text-anchor', RIGHT).text((d) => d);
+      const step = cw < 18 ? 6 : 3;
+      svg.append('g').selectAll('text').data(d3.range(0, 24, step)).join('text').attr('class', 'tick')
+        .attr('x', (h) => cx(h) + cw / 2).attr('y', H - 8).attr('text-anchor', 'middle').text(hh);
+    },
+
+    clock(box) {
+      const W = Math.max(260, box.clientWidth), size = Math.min(W, 380), H = size;
+      const svg = svgIn(box, W, H);
+      const g = svg.append('g').attr('transform', `translate(${W / 2},${H / 2})`);
+      const R = size / 2 - 24, r0 = R * 0.38;
+      const max = d3.max(hourly, (r) => r.n);
+      const rs = d3.scaleRadial([0, max], [r0, R]);
+      const ang = (h) => (h / 24) * 2 * Math.PI;
+      [0.5, 1].forEach((k) => g.append('circle').attr('r', rs(max * k)).style('fill', 'none').attr('class', 'gl'));
+      const arc = d3.arc().innerRadius(r0).outerRadius((r) => rs(r.n)).startAngle((r) => ang(r.h) + 0.02).endAngle((r) => ang(r.h + 1) - 0.02).cornerRadius(3);
+      g.append('g').selectAll('path').data(hourly).join('path')
+        .attr('class', firstDraw && !reduce ? 'fade' : null).style('animation-delay', (r) => r.h * 25 + 'ms')
+        .attr('d', arc).style('fill', (r) => (r === peakHour ? 'var(--gold)' : 'var(--accent)')).style('fill-opacity', (r) => (r === peakHour ? 1 : 0.35 + 0.65 * (r.n / max)))
+        .on('pointermove', (ev, r) => showTip(ev, hh(r.h) + '–' + hh((r.h + 1) % 24), [f0(r.n) + ' تبرع', pct(r.n / totalHourly) + ' من الإجمالي']))
+        .on('pointerleave', hideTip);
+      g.append('g').selectAll('text').data(d3.range(0, 24, 3)).join('text').attr('class', 'tick').attr('text-anchor', 'middle').attr('dy', '0.32em')
+        .attr('x', (h) => Math.sin(ang(h)) * (R + 14)).attr('y', (h) => -Math.cos(ang(h)) * (R + 14)).text(hh);
+      g.append('text').attr('text-anchor', 'middle').attr('y', -6).style('font-family', 'var(--font-display)').style('font-weight', 800)
+        .style('font-size', Math.max(18, r0 * 0.42) + 'px').style('fill', 'var(--ink)').text(hh(peakHour.h));
+      g.append('text').attr('text-anchor', 'middle').attr('y', r0 * 0.35).attr('class', 'tick').text('ساعة الذروة');
+    },
+
+    hourly(box) {
+      const W = Math.max(280, box.clientWidth), H = 240, Bm = 30;
+      const svg = svgIn(box, W, H);
+      const y = d3.scaleLinear([0, d3.max(hourly, (r) => Math.max(r.rs, r.os))], [H - Bm, 14]).nice();
+      const ticks = y.ticks(4);
+      const mr = measure(svg, ticks.map(pct0), 'tick') + 12, ml = 8;
+      const x = d3.scaleLinear([0, 23], [W - mr - 6, ml]);
+      svg.append('g').selectAll('line').data(ticks).join('line').attr('class', (v) => (v === 0 ? 'ax' : 'gl')).attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y);
+      svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'tick').attr('x', W - 2).attr('y', y).attr('dy', '0.32em').attr('text-anchor', RIGHT).text(pct0);
+      svg.append('g').selectAll('text').data(d3.range(0, 24, W < 420 ? 6 : 3)).join('text').attr('class', 'tick').attr('x', x).attr('y', H - 9).attr('text-anchor', 'middle').text(hh);
+      const series = [{ k: 'os', c: 'var(--accent)', id: 'gO' }, { k: 'rs', c: 'var(--gold)', id: 'gR' }];
+      const defs = svg.append('defs');
+      series.forEach((s) => {
+        const lg = defs.append('linearGradient').attr('id', s.id).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+        [[0, .28], [.5, .08], [1, 0]].forEach(([o, a]) => lg.append('stop').attr('offset', o).style('stop-color', s.c).style('stop-opacity', a));
+        svg.append('path').datum(hourly).style('fill', `url(#${s.id})`).attr('d', d3.area().x((r) => x(r.h)).y0(y(0)).y1((r) => y(r[s.k])));
+        svg.append('path').datum(hourly).attr('fill', 'none').style('stroke', s.c).attr('stroke-width', 2.5).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round')
+          .attr('d', d3.line().x((r) => x(r.h)).y((r) => y(r[s.k])));
+      });
+      const rule = svg.append('line').attr('class', 'ref').attr('y1', 14).attr('y2', H - Bm).style('opacity', 0);
+      const dots = series.map((s) => svg.append('circle').attr('r', 4.5).style('fill', s.c).style('stroke', 'var(--surface)').attr('stroke-width', 2).style('opacity', 0));
+      svg.append('rect').attr('class', 'hit').attr('x', ml).attr('width', W - mr - ml).attr('y', 0).attr('height', H - Bm)
+        .on('pointermove', (ev) => {
+          const h = Math.max(0, Math.min(23, Math.round(x.invert(d3.pointer(ev)[0]))));
+          const r = hourly[h];
+          rule.attr('x1', x(h)).attr('x2', x(h)).style('opacity', 1);
+          dots.forEach((dt, i) => dt.attr('cx', x(h)).attr('cy', y(r[series[i].k])).style('opacity', 1));
+          showTip(ev, hh(h) + '–' + hh((h + 1) % 24), ['رمضان: ' + pct(r.rs) + ' (' + f1(r.rd) + ' تبرع/يوم)', 'باقي السنة: ' + pct(r.os) + ' (' + f1(r.od) + ' تبرع/يوم)']);
+        })
+        .on('pointerleave', () => { rule.style('opacity', 0); dots.forEach((dt) => dt.style('opacity', 0)); hideTip(); });
+    },
+
+    weekday(box) {
+      bars(box, weekday, { cat: (r) => r.wd, val: (r) => r.v, labelTop: true,
+        color: (r) => (r === topDay ? 'var(--gold)' : 'var(--accent)'),
+        tip: (r) => [r.wd, f1(r.v) + ' متبرع في اليوم', f1(r.n) + ' تبرع في اليوم', 'على ' + f0(r.days) + ' يوماً'] });
+    },
+    dom(box) {
+      const rows = DATA.day_of_month.map((r) => ({ d: +r.dom, v: +r.avg_donors, n: +r.days })).sort((a, b) => a.d - b.d);
+      bars(box, rows, { cat: (r) => r.d, val: (r) => r.v,
+        color: (r) => (r.d >= PAY_DAYS[0] && r.d <= PAY_DAYS[1] ? 'var(--gold)' : 'var(--bar-muted)'),
+        tip: (r) => ['اليوم ' + r.d + ' من الشهر', f1(r.v) + ' متبرع في اليوم', 'على ' + f0(r.n) + ' يوماً'] });
+    },
+    hijri(box) {
+      const rows = DATA.hijri_month.map((r) => ({ m: +r.hijri_month, name: r.hijri_month_name, v: +r.avg_donors, n: +r.days, a: +r.amount })).sort((a, b) => a.m - b.m);
+      bars(box, rows, { cat: (r) => r.name, val: (r) => r.v, height: 250, labelTop: true,
+        color: (r) => (r.m === 9 ? 'var(--gold)' : r.m === 12 ? 'var(--accent)' : 'var(--bar-muted)'),
+        tip: (r) => [r.name, f1(r.v) + ' متبرع في اليوم', f0(r.a) + ' ريال', 'على ' + f0(r.n) + ' يوماً'] });
+    },
+    ramadan(box) {
+      const rows = DATA.ramadan_days.map((r) => ({ d: +r.hijri_day, v: +r.avg_donors, n: +r.days })).sort((a, b) => a.d - b.d);
+      bars(box, rows, { cat: (r) => r.d, val: (r) => r.v, height: 250,
+        color: (r) => (r.d >= 21 ? 'var(--gold)' : 'var(--accent)'),
+        tip: (r) => [r.d + ' رمضان', f1(r.v) + ' متبرع في اليوم', 'متوسط ' + f0(r.n) + ' سنوات'] });
+    },
+
+    trend(box) {
+      const num = (v) => (v === '' || v == null ? null : +v);
+      const rows = DATA.daily.map((r) => ({ t: new Date(r.date), v: num(r.donors), n: num(r.donations), a: num(r.amount), hm: num(r.hijri_month), hd: num(r.hijri_day), hn: r.hijri_month_name })).sort((a, b) => a.t - b.t);
+      const W = Math.max(300, box.clientWidth), H = 280, Bm = 42;
+      const svg = svgIn(box, W, H);
+      const y = d3.scaleLinear([0, d3.max(rows, (r) => r.v)], [H - Bm, 12]).nice();
+      const ticks = y.ticks(4);
+      const mr = measure(svg, ticks.map(f0), 'tick') + 12, ml = 6;
+      const x = d3.scaleUtc(d3.extent(rows, (r) => r.t), [W - mr - 4, ml]);
+      const runs = [];
+      rows.forEach((r) => { if (r.hm !== 9) return; const L = runs[runs.length - 1]; if (L && r.t - L.end <= 2 * 864e5) L.end = r.t; else runs.push({ start: r.t, end: r.t }); });
+      svg.append('g').selectAll('rect').data(runs).join('rect')
+        .attr('x', (r) => x(d3.utcDay.offset(r.end, 1))).attr('width', (r) => Math.max(1, x(r.start) - x(d3.utcDay.offset(r.end, 1))))
+        .attr('y', 12).attr('height', H - Bm - 12).attr('rx', 4).style('fill', 'var(--gold)').style('fill-opacity', 0.16);
+      svg.append('g').selectAll('line').data(ticks).join('line').attr('class', (v) => (v === 0 ? 'ax' : 'gl')).attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y);
+      svg.append('g').selectAll('text').data(ticks).join('text').attr('class', 'tick').attr('x', W - 2).attr('y', y).attr('dy', '0.32em').attr('text-anchor', RIGHT).text(f0);
+      const every = W < 560 ? 6 : 3;
+      const months = x.ticks(d3.utcMonth.every(every));
+      const xt = svg.append('g').selectAll('g').data(months).join('g').attr('transform', (m) => `translate(${x(m)},0)`);
+      xt.append('text').attr('class', 'tick').attr('y', H - Bm + 17).attr('text-anchor', 'middle').text((m) => monFmt.format(m));
+      xt.append('text').attr('class', 'tick').attr('y', H - Bm + 33).attr('text-anchor', 'middle').text((m, i) => (i === 0 || m.getUTCMonth() < every ? String(m.getUTCFullYear()) : ''));
+      const defs = svg.append('defs'); const lg = defs.append('linearGradient').attr('id', 'gT').attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+      [[0, .26], [.25, .16], [.5, .08], [.75, .03], [1, 0]].forEach(([o, a]) => lg.append('stop').attr('offset', o).style('stop-color', 'var(--accent)').style('stop-opacity', a));
+      const def = (r) => r.v != null;
+      svg.append('path').datum(rows).style('fill', 'url(#gT)').attr('d', d3.area().defined(def).x((r) => x(r.t)).y0(y(0)).y1((r) => y(r.v)));
+      svg.append('path').datum(rows).attr('fill', 'none').style('stroke', 'var(--accent)').attr('stroke-width', 1.6).attr('stroke-linejoin', 'round')
+        .attr('d', d3.line().defined(def).x((r) => x(r.t)).y((r) => y(r.v)));
+      const peak = rows.reduce((a, b) => ((b.v || 0) > (a.v || 0) ? b : a));
+      svg.append('circle').attr('cx', x(peak.t)).attr('cy', y(peak.v)).attr('r', 4).style('fill', 'var(--gold)');
+      const leftSide = x(peak.t) < W / 2;
+      svg.append('text').attr('class', 'val').attr('x', x(peak.t) + (leftSide ? 8 : -8)).attr('y', y(peak.v)).attr('dy', '0.32em').attr('text-anchor', leftSide ? 'end' : RIGHT)
+        .text('أعلى يوم: ' + f0(peak.v) + ' متبرع (' + peak.hd + ' ' + peak.hn + ')');
+      const dot = svg.append('circle').attr('r', 4.5).style('fill', 'var(--accent)').style('stroke', 'var(--surface)').attr('stroke-width', 2).style('opacity', 0);
+      const withData = rows.filter(def); const bis = d3.bisector((r) => r.t).center;
+      svg.append('rect').attr('class', 'hit').attr('x', ml).attr('width', W - mr - ml).attr('y', 0).attr('height', H - Bm)
+        .on('pointermove', (ev) => {
+          const r = withData[bis(withData, x.invert(d3.pointer(ev)[0]))]; if (!r) return;
+          dot.attr('cx', x(r.t)).attr('cy', y(r.v)).style('opacity', 1);
+          showTip(ev, dayFmt.format(r.t), [r.hd + ' ' + r.hn, f0(r.v) + ' متبرع', f0(r.n) + ' تبرع', f0(r.a) + ' ريال']);
+        })
+        .on('pointerleave', () => { dot.style('opacity', 0); hideTip(); });
+    },
+  };
+
+  function drawAll() {
+    Object.entries(charts).forEach(([id, fn]) => { const box = document.getElementById(id); if (box) fn(box); });
+    firstDraw = false;
+  }
+
+  // Heatmap metric toggle
+  document.querySelectorAll('.seg button').forEach((b) => b.addEventListener('click', () => {
+    heatMetric = b.dataset.m;
+    document.querySelectorAll('.seg button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    charts.heat(document.getElementById('heat'));
+  }));
+
+  // Theme toggle
+  const btn = document.getElementById('themeBtn');
+  const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const syncBtn = () => { btn.textContent = isDark() ? 'الوضع الفاتح' : 'الوضع الداكن'; };
+  try { const saved = localStorage.getItem('ehsan-theme'); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('ehsan-theme', next); } catch (e) {}
+    syncBtn();
+  });
+
+  // Active nav link
+  const links = [...document.querySelectorAll('.nav a')];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('main section[id]').forEach((s) => io.observe(s));
+
+  drawAll();
+  let lastW = innerWidth;
+  new ResizeObserver(() => { if (Math.abs(innerWidth - lastW) > 4) { lastW = innerWidth; drawAll(); } }).observe(document.body);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+})();
+</script>
+</body>
+</html>

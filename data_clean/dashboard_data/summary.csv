@@ -1,0 +1,2 @@
+donations,donors,amount,days_with_data,avg_donors_per_day,median_donors_per_day,start,end,excluded_recurring,merged_duplicates
+29522,1362,1433853,811,21.1,16.0,2021-04-01,2023-06-30,10981,45
