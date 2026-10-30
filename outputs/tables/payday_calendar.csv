@@ -1,0 +1,117 @@
+﻿Program,Month,Pay_Date,Weekday,Status,Source
+salary_27,2021-03,2021-03-28,Sunday,rule,baseline rule
+pension_25,2021-03,2021-03-25,Thursday,rule,baseline rule
+citizen_10,2021-03,2021-03-10,Wednesday,rule,baseline rule
+day1_group,2021-03,2021-03-01,Monday,rule,baseline rule
+salary_27,2021-04,2021-04-27,Tuesday,rule,baseline rule
+pension_25,2021-04,2021-04-25,Sunday,rule,baseline rule
+citizen_10,2021-04,2021-04-11,Sunday,rule,baseline rule
+day1_group,2021-04,2021-04-01,Thursday,rule,baseline rule
+salary_27,2021-05,2021-05-27,Thursday,rule,baseline rule
+pension_25,2021-05,2021-05-25,Tuesday,rule,baseline rule
+citizen_10,2021-05,2021-05-10,Monday,rule,baseline rule
+day1_group,2021-05,2021-04-29,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2021-06,2021-06-27,Sunday,rule,baseline rule
+pension_25,2021-06,2021-06-24,Thursday,rule,baseline rule
+citizen_10,2021-06,2021-06-10,Thursday,rule,baseline rule
+day1_group,2021-06,2021-06-01,Tuesday,rule,baseline rule
+salary_27,2021-07,2021-07-27,Tuesday,rule,baseline rule
+pension_25,2021-07,2021-07-25,Sunday,rule,baseline rule
+citizen_10,2021-07,2021-07-11,Sunday,rule,baseline rule
+day1_group,2021-07,2021-07-01,Thursday,rule,baseline rule
+salary_27,2021-08,2021-08-26,Thursday,rule,baseline rule
+pension_25,2021-08,2021-08-25,Wednesday,rule,baseline rule
+citizen_10,2021-08,2021-08-10,Tuesday,rule,baseline rule
+day1_group,2021-08,2021-08-01,Sunday,rule,baseline rule
+salary_27,2021-09,2021-09-27,Monday,rule,baseline rule
+pension_25,2021-09,2021-09-26,Sunday,rule,baseline rule
+citizen_10,2021-09,2021-09-09,Thursday,rule,baseline rule
+day1_group,2021-09,2021-09-01,Wednesday,rule,baseline rule
+salary_27,2021-10,2021-10-27,Wednesday,rule,baseline rule
+pension_25,2021-10,2021-10-25,Monday,rule,baseline rule
+citizen_10,2021-10,2021-10-10,Sunday,rule,baseline rule
+day1_group,2021-10,2021-09-30,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2021-11,2021-11-28,Sunday,rule,baseline rule
+pension_25,2021-11,2021-11-25,Thursday,rule,baseline rule
+citizen_10,2021-11,2021-11-10,Wednesday,rule,baseline rule
+day1_group,2021-11,2021-11-01,Monday,rule,baseline rule
+salary_27,2021-12,2021-12-27,Monday,rule,baseline rule
+pension_25,2021-12,2021-12-26,Sunday,rule,baseline rule
+citizen_10,2021-12,2021-12-09,Thursday,rule,baseline rule
+day1_group,2021-12,2021-12-01,Wednesday,rule,baseline rule
+salary_27,2022-01,2022-01-27,Thursday,rule,baseline rule
+pension_25,2022-01,2022-01-25,Tuesday,rule,baseline rule
+citizen_10,2022-01,2022-01-10,Monday,rule,baseline rule
+day1_group,2022-01,2021-12-30,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2022-02,2022-02-27,Sunday,rule,baseline rule
+pension_25,2022-02,2022-02-24,Thursday,rule,baseline rule
+citizen_10,2022-02,2022-02-10,Thursday,rule,baseline rule
+day1_group,2022-02,2022-02-01,Tuesday,rule,baseline rule
+salary_27,2022-03,2022-03-27,Sunday,rule,baseline rule
+pension_25,2022-03,2022-03-24,Thursday,rule,baseline rule
+citizen_10,2022-03,2022-03-10,Thursday,rule,baseline rule
+day1_group,2022-03,2022-03-01,Tuesday,rule,baseline rule
+salary_27,2022-04,2022-04-27,Wednesday,rule,baseline rule
+pension_25,2022-04,2022-04-25,Monday,rule,baseline rule
+citizen_10,2022-04,2022-04-10,Sunday,rule,baseline rule
+day1_group,2022-04,2022-03-31,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2022-05,2022-05-26,Thursday,rule,baseline rule
+pension_25,2022-05,2022-05-25,Wednesday,rule,baseline rule
+citizen_10,2022-05,2022-05-10,Tuesday,rule,baseline rule
+day1_group,2022-05,2022-05-01,Sunday,rule,baseline rule
+salary_27,2022-06,2022-06-27,Monday,rule,baseline rule
+pension_25,2022-06,2022-06-26,Sunday,rule,baseline rule
+citizen_10,2022-06,2022-06-09,Thursday,rule,baseline rule
+day1_group,2022-06,2022-06-01,Wednesday,rule,baseline rule
+salary_27,2022-07,2022-07-27,Wednesday,rule,baseline rule
+pension_25,2022-07,2022-07-25,Monday,rule,baseline rule
+citizen_10,2022-07,2022-07-06,Wednesday,announced,Citizen Account spokesperson via Al-Marsd (payment 56)
+day1_group,2022-07,2022-06-30,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2022-08,2022-08-28,Sunday,rule,baseline rule
+pension_25,2022-08,2022-08-25,Thursday,rule,baseline rule
+citizen_10,2022-08,2022-08-10,Wednesday,rule,baseline rule
+day1_group,2022-08,2022-08-01,Monday,rule,baseline rule
+salary_27,2022-09,2022-09-27,Tuesday,rule,baseline rule
+pension_25,2022-09,2022-09-25,Sunday,rule,baseline rule
+citizen_10,2022-09,2022-09-11,Sunday,rule,baseline rule
+day1_group,2022-09,2022-09-01,Thursday,rule,baseline rule
+salary_27,2022-10,2022-10-27,Thursday,rule,baseline rule
+pension_25,2022-10,2022-10-25,Tuesday,rule,baseline rule
+citizen_10,2022-10,2022-10-10,Monday,rule,baseline rule
+day1_group,2022-10,2022-09-29,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2022-11,2022-11-27,Sunday,rule,baseline rule
+pension_25,2022-11,2022-11-24,Thursday,rule,baseline rule
+citizen_10,2022-11,2022-11-10,Thursday,rule,baseline rule
+day1_group,2022-11,2022-11-01,Tuesday,rule,baseline rule
+salary_27,2022-12,2022-12-27,Tuesday,rule,baseline rule
+pension_25,2022-12,2022-12-25,Sunday,rule,baseline rule
+citizen_10,2022-12,2022-12-11,Sunday,rule,baseline rule
+day1_group,2022-12,2022-12-01,Thursday,rule,baseline rule
+salary_27,2023-01,2023-01-26,Thursday,rule,baseline rule
+pension_25,2023-01,2023-01-25,Wednesday,rule,baseline rule
+citizen_10,2023-01,2023-01-10,Tuesday,rule,baseline rule
+day1_group,2023-01,2023-01-01,Sunday,rule,baseline rule
+salary_27,2023-02,2023-02-27,Monday,rule,baseline rule
+pension_25,2023-02,2023-02-26,Sunday,rule,baseline rule
+citizen_10,2023-02,2023-02-09,Thursday,rule,baseline rule
+day1_group,2023-02,2023-02-01,Wednesday,rule,baseline rule
+salary_27,2023-03,2023-03-27,Monday,rule,baseline rule
+pension_25,2023-03,2023-03-26,Sunday,rule,baseline rule
+citizen_10,2023-03,2023-03-09,Thursday,rule,baseline rule
+day1_group,2023-03,2023-03-01,Wednesday,rule,baseline rule
+salary_27,2023-04,2023-04-27,Thursday,rule,baseline rule
+pension_25,2023-04,2023-04-25,Tuesday,rule,baseline rule
+citizen_10,2023-04,2023-04-10,Monday,rule,baseline rule
+day1_group,2023-04,2023-03-30,Thursday,check (weekend shift from secondary sources),baseline rule
+salary_27,2023-05,2023-05-28,Sunday,rule,baseline rule
+pension_25,2023-05,2023-05-25,Thursday,rule,baseline rule
+citizen_10,2023-05,2023-05-10,Wednesday,rule,baseline rule
+day1_group,2023-05,2023-05-01,Monday,rule,baseline rule
+salary_27,2023-06,2023-06-27,Tuesday,rule,baseline rule
+pension_25,2023-06,2023-06-25,Sunday,rule,baseline rule
+citizen_10,2023-06,2023-06-11,Sunday,rule,baseline rule
+day1_group,2023-06,2023-06-01,Thursday,rule,baseline rule
+salary_27,2023-07,2023-07-27,Thursday,rule,baseline rule
+pension_25,2023-07,2023-07-25,Tuesday,rule,baseline rule
+citizen_10,2023-07,2023-07-10,Monday,rule,baseline rule
+day1_group,2023-07,2023-06-29,Thursday,check (weekend shift from secondary sources),baseline rule

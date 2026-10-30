@@ -29,7 +29,7 @@
 ```
 .
 ├── README.md
-├── analysis.ipynb                 # التحليل الإحصائي (Colab): الرواتب، المواسم، أيام الأسبوع
+├── analysis.ipynb                 # التحليل كاملاً (14 خلية): الرواتب، المواسم، الجمعة، الثبات، التوقع، ساعة اليوم
 ├── index.html                     # اللوحة التفاعلية (ملف مستقل، البيانات مضمّنة)
 ├── data_clean/
 │   ├── ehsan_rows_2021-04_2023-06.csv   # البيانات بعد التنظيف (فاصلة منقوطة ;)
@@ -38,7 +38,9 @@
 │   ├── prepare_dashboard_data.py  # يبني الجداول المجمّعة من الملف النظيف
 │   ├── build_dashboard.py         # يدمج الجداول في قالب اللوحة ويُخرج index.html
 │   └── dashboard_template.html    # قالب اللوحة
-├── outputs/figures/               # رسومات الدفتر (المواسم، الرواتب، التوقع) ولقطات اللوحة
+├── outputs/
+│   ├── figures/                   # رسوم الدفتر (المواسم، الرواتب، التوقع، الساعات) ولقطات اللوحة
+│   └── tables/                    # كل جداول النتائج من الدفتر (بدون معرفات المتبرعين)
 ├── report/
 │   ├── executive_summary.pdf
 │   └── ai_usage_report.pdf
@@ -47,7 +49,7 @@
 
 ## طريقة التشغيل
 
-**التحليل:** افتح `analysis.ipynb` في Google Colab وشغّل الخلايا بالترتيب. الخلية الأولى تطلب رفع `data_clean/ehsan_rows_2021-04_2023-06.csv`. يحتاج `pandas` و`statsmodels` و`hijridate` (يُثبَّت تلقائياً).
+**التحليل:** افتح `analysis.ipynb` في Google Colab واختر `Runtime → Restart session and run all`؛ الخلية الأولى تطلب رفع `data_clean/ehsan_rows_2021-04_2023-06.csv`. ومن جذر المستودع محلياً يُقرأ الملف مباشرة: `pip install pandas statsmodels hijridate matplotlib` ثم شغّل الدفتر. المخرجات تُحفظ في `outputs/tables/` و`outputs/figures/`.
 
 **اللوحة:** من جذر المستودع:
 

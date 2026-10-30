@@ -1,0 +1,12 @@
+﻿Type,Factor,Change_%,CI_low_%,CI_high_%,Conclusion
+Season,Eid al-Fitr (Shawwal 1-3),-5.7,-14.3,3.7,No clear difference
+Season,Eid al-Adha + Tashreeq (10-13),-19.4,-34.3,-1.0,Not consistent (model and check disagree)
+Season,Muharram,5.6,-4.8,17.2,No clear difference
+Day of week,Monday (vs Sunday),4.2,-2.2,11.0,No clear difference
+Day of week,Tuesday (vs Sunday),10.0,-5.0,27.3,No clear difference
+Day of week,Wednesday (vs Sunday),-4.5,-10.8,2.3,No clear difference
+Day of week,Thursday (vs Sunday),-3.9,-12.4,5.5,No clear difference
+Day of week,Saturday (vs Sunday),-9.3,-15.1,-3.0,Clear drop
+Payday (payday + 3 days),Civil/military pensions (25th),17.8,7.8,28.7,"Rise, but mostly the salary days (overlap)"
+Payday (payday + 3 days),Citizen Account (10th),12.6,1.3,25.2,Not confirmed by the event view
+Payday (payday + 3 days),"Day-1 payments (GOSI pensions, Saned, social security)",8.4,-1.3,19.2,No clear rise

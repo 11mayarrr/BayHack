@@ -1,0 +1,6 @@
+﻿Rank,Type,Factor,Change_%,CI_low_%,CI_high_%,Conclusion
+1,Season,"Ramadan, last 10 days",484.0,409.7,569.1,Clear rise
+2,Season,"Ramadan, days 1-20",155.6,129.4,184.9,Clear rise
+3,Season,Dhu al-Hijjah 1-9 (incl. Arafah),153.1,99.5,221.0,Clear rise
+4,Day of week,Friday (vs Sunday),53.9,39.3,70.2,Clear rise
+5,Payday (payday + 3 days),State salaries (27th),25.6,11.7,41.2,Clear rise
