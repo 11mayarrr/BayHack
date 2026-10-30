@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <!-- بيّنة: three rising bars = evidence from data. Edit colors/sizes freely. -->
+  <!-- بيّن: three rising bars = evidence from data. Edit colors/sizes freely. -->
   <rect x="16" y="16" width="480" height="480" rx="96" fill="#0E4D5C"/>
   <rect x="120" y="296" width="72" height="104" rx="14" fill="#A9C1C6"/>
   <rect x="220" y="216" width="72" height="184" rx="14" fill="#EAF2F3"/>
