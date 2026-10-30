@@ -1,9 +1,12 @@
-# متى يتبرّع الناس أكثر في منصة إحسان؟
+# متى يرتفع التبرع في منصة إحسان؟ — فريق بيّنة
+
+**الفريق:** مرام صالح الربيش · ميار سليمان ال
 
 تحليل أوقات التبرع اليدوي في منصة إحسان (أبريل 2021 – يونيو 2023) لترشيح أفضل الأوقات لإطلاق الحملات وإرسال التذكيرات، مع لوحة تفاعلية لفريق إحسان.
 
 - **اللوحة التفاعلية:** https://11mayarrr.github.io/BayHack/ (الملف `index.html`)
 - **الملخص التنفيذي:** [`report/executive_summary.pdf`](report/executive_summary.pdf)
+- **تقرير استخدام الذكاء الاصطناعي:** [`ai_usage_log.md`](ai_usage_log.md) ونسخة PDF في [`report/ai_usage_report.pdf`](report/ai_usage_report.pdf)
 
 ## أهم النتائج
 
@@ -35,8 +38,10 @@
 │   ├── prepare_dashboard_data.py  # يبني الجداول المجمّعة من الملف النظيف
 │   ├── build_dashboard.py         # يدمج الجداول في قالب اللوحة ويُخرج index.html
 │   └── dashboard_template.html    # قالب اللوحة
-├── outputs/figures/               # رسومات الدفتر ولقطات اللوحة
-├── report/executive_summary.pdf
+├── outputs/figures/               # رسومات الدفتر (المواسم، الرواتب، التوقع) ولقطات اللوحة
+├── report/
+│   ├── executive_summary.pdf
+│   └── ai_usage_report.pdf
 └── ai_usage_log.md
 ```
 
